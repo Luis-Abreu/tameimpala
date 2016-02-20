@@ -10,6 +10,7 @@ var LoopVisualizer = (function() {
 	var rings = [];
 	var levels = [];
 	var colors = [];
+	//var cubemesh = new THREE.Object3D();
 	var loopHolder = new THREE.Object3D();
 	var loopGeom;//one geom for all rings
 	var perlin = new ImprovedNoise();
@@ -17,7 +18,7 @@ var LoopVisualizer = (function() {
 	var freqByteData;
 	var timeByteData;
 	
-	var cubemesh;
+	
 
 
 	function init() {
@@ -30,12 +31,12 @@ var LoopVisualizer = (function() {
 		var texture = THREE.ImageUtils.loadTexture( 'images/cubetexture.jpg' );
 		var geometry = new THREE.BoxGeometry( 100, 100, 100 );
 		var material = new THREE.MeshBasicMaterial( { map: texture } );
-		cubemesh = new THREE.Mesh( geometry, material );
+		//cubemesh = new THREE.Mesh( geometry, material );
 		
-		scene.add( cubemesh );
+		//scene.add( cubemesh );
 		
-		cubemesh.position.z = 1500;
-		cubemesh.position.x = 300;
+		//cubemesh.position.z = 1500;
+		//cubemesh.position.x = 300;
 
 		////////INIT audio in
 		freqByteData = new Uint8Array(analyser.frequencyBinCount);
@@ -104,11 +105,11 @@ var LoopVisualizer = (function() {
 		levels.push(scaled_average);
 		levels.shift(1);
 		
-		cubemesh.rotation.x += 0.005;
-		cubemesh.rotation.y += 0.01;
-		cubemesh.scale.x = scaled_average;
-		cubemesh.scale.y = scaled_average;
-		cubemesh.scale.z = scaled_average;
+		//cubemesh.rotation.x += 0.005;
+		//cubemesh.rotation.y += 0.01;
+		//cubemesh.scale.x = scaled_average*2;
+		//cubemesh.scale.y = scaled_average*2;
+		//cubemesh.scale.z = scaled_average*2;
 
 		//add a new color onto the list
 		noisePos += 0.005;
@@ -140,7 +141,7 @@ var LoopVisualizer = (function() {
 		init:init,
 		update:update,
 		remove:remove,
-		cubemesh:cubemesh,
+		//cubemesh:cubemesh,
 		loopHolder:loopHolder
 	};
 	}());
